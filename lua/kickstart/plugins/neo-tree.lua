@@ -14,11 +14,18 @@ return {
   lazy = false,
   keys = {
     { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    { '<leader>e', ':Neotree toggle left<CR>', desc = 'Toggle file [E]xplorer', silent = true },
   },
   ---@module 'neo-tree'
   ---@type neotree.Config
   opts = {
+    window = {
+      position = 'left',
+      width = 32,
+    },
     filesystem = {
+      follow_current_file = { enabled = true },
+      use_libuv_file_watcher = true,
       window = {
         mappings = {
           ['\\'] = 'close_window',
@@ -26,4 +33,13 @@ return {
       },
     },
   },
+  init = function()
+    vim.api.nvim_create_autocmd('VimEnter', {
+      callback = function()
+        if vim.fn.argc() == 0 then
+          vim.cmd 'Neotree show'
+        end
+      end,
+    })
+  end,
 }

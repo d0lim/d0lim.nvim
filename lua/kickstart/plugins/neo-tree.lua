@@ -23,6 +23,13 @@ return {
       position = 'left',
       width = 32,
     },
+    default_component_configs = {
+      file_size = { enabled = false },
+      type = { enabled = false },
+      last_modified = { enabled = false },
+      created = { enabled = false },
+      symlink_target = { enabled = false },
+    },
     filesystem = {
       follow_current_file = { enabled = true },
       use_libuv_file_watcher = true,

@@ -22,6 +22,7 @@ return {
     window = {
       position = 'left',
       width = 32,
+      auto_expand_width = true,
     },
     default_component_configs = {
       file_size = { enabled = false },

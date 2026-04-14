@@ -661,6 +661,25 @@ require('lazy').setup({
         vim.lsp.config(name, server)
         vim.lsp.enable(name)
       end
+
+      -- JetBrains Kotlin LSP (manual install — not in Mason)
+      --   Install: `brew install JetBrains/utils/kotlin-lsp`
+      --   Upstream: https://github.com/Kotlin/kotlin-lsp
+      if vim.fn.executable 'kotlin-lsp' == 1 then
+        vim.lsp.config('kotlin_lsp', {
+          cmd = { 'kotlin-lsp', '--stdio' },
+          filetypes = { 'kotlin' },
+          root_markers = {
+            'settings.gradle.kts',
+            'settings.gradle',
+            'build.gradle.kts',
+            'build.gradle',
+            'pom.xml',
+            '.git',
+          },
+        })
+        vim.lsp.enable 'kotlin_lsp'
+      end
     end,
   },
 
